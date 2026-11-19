@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Remind — психологическая поддержка</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f4f1;
+  color: #292929;
+}
+header {
+  padding: 22px 7%;
+  background: white;
+  border-bottom: 1px solid #e8e6e1;
+  font-size: 23px;
+  font-weight: bold;
+}
+main {
+  max-width: 850px;
+  margin: 65px auto;
+  padding: 20px;
+}
+h1 { font-size: 36px; font-weight: 600; }
+.subtitle { color: #777; line-height: 1.6; }
+.chat {
+  background: white;
+  border: 1px solid #e5e2dc;
+  border-radius: 16px;
+  min-height: 360px;
+  padding: 22px;
+  margin-top: 35px;
+}
+.message {
+  background: #f1f0ec;
+  padding: 13px 16px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+  max-width: 85%;
+}
+.user {
+  background: #e4eee9;
+  margin-left: auto;
+}
+form {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+}
+button {
+  padding: 14px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: #527565;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+.note { color: #999; font-size: 13px; margin-top: 20px; }
+</style>
+</head>
+<body>
+<header>Remind</header>
+<main>
+  <h1>Пространство, где можно быть собой.</h1>
+  <p class="subtitle">
+    Поговори о том, что тебя беспокоит.
+    Здесь можно спокойно поделиться мыслями и чувствами.
+  </p>
+
+  <section class="chat">
+    <div id="messages">
+      <div class="message">
+        Привет! Я Remind. О чём тебе хотелось бы поговорить?
+      </div>
+    </div>
+    <form id="chatForm">
+      <input id="messageInput" placeholder="Напиши сообщение..." autocomplete="off">
+      <button type="submit">Отправить</button>
+    </form>
+    <p class="note">Это первая демонстрационная версия интерфейса.</p>
+  </section>
+</main>
+<script>
+const form = document.getElementById('chatForm');
+const input = document.getElementById('messageInput');
+const messages = document.getElementById('messages');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const text = input.value.trim();
+  if (!text) return;
+
+  const message = document.createElement('div');
+  message.className = 'message user';
+  message.textContent = text;
+  messages.appendChild(message);
+  input.value = '';
+  messages.scrollIntoView({ behavior: 'smooth', block: 'end' });
+});
+</script>
+</body>
+</html>
